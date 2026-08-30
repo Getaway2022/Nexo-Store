@@ -1,0 +1,1 @@
+import type{Product}from'../types/product';import{apiRequest}from'./http';export const productService={getAll:()=>apiRequest<Product[]>('/products'),getById:(id:number)=>apiRequest<Product>(`/products/${id}`),getOffers:()=>apiRequest<Product[]>('/products/offers'),getRelated:(id:number)=>apiRequest<Product[]>(`/products/${id}/related`)};

@@ -1,0 +1,4 @@
+package pe.nexo.store.order;
+import org.springframework.web.bind.annotation.*;import java.util.List;
+@RestController @RequestMapping("/api/admin/orders")
+public class AdminOrderController {private final OrderService service;public AdminOrderController(OrderService service){this.service=service;}public record StatusRequest(OrderStatus status){}@GetMapping public List<AdminOrderResponse> all(){return service.findAll().stream().map(AdminOrderResponse::from).toList();}@GetMapping("/{id}")public AdminOrderResponse one(@PathVariable Long id){return AdminOrderResponse.from(service.findById(id));}@PatchMapping("/{id}/status") public AdminOrderResponse status(@PathVariable Long id,@RequestBody StatusRequest request){if(request.status()==null)throw new IllegalStateException("El estado es obligatorio");return AdminOrderResponse.from(service.changeStatus(id,request.status()));}}

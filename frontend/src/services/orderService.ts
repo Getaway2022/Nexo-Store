@@ -1,0 +1,1 @@
+import type{CreateOrderRequest,OrderResponse}from'../types/order';import{apiRequest}from'./http';export const orderService={create:(order:CreateOrderRequest)=>apiRequest<OrderResponse>('/orders',{method:'POST',body:JSON.stringify(order)})};

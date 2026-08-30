@@ -1,0 +1,1 @@
+'use client';import{CartProvider}from'../src/context/CartContext';import{FavoritesProvider}from'../src/context/FavoritesContext';import{StorePage}from'../src/screens/StorePage';export default function Page(){return <FavoritesProvider><CartProvider><StorePage/></CartProvider></FavoritesProvider>}

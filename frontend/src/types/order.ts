@@ -1,0 +1,1 @@
+export interface CheckoutData{customerName:string;email:string;phone:string;address:string;city:string;paymentMethod:string;couponCode:string}export interface CreateOrderRequest extends CheckoutData{items:{productId:number;quantity:number}[]}export interface OrderResponse{id:number;orderNumber:string;status:string;total:number;createdAt:string}

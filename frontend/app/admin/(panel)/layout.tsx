@@ -1,0 +1,1 @@
+'use client';import{AdminGuard}from'../../../src/components/admin/AdminGuard';import{AdminLayout}from'../../../src/components/admin/AdminLayout';export default function Layout({children}:{children:React.ReactNode}){return <AdminGuard><AdminLayout>{children}</AdminLayout></AdminGuard>}
