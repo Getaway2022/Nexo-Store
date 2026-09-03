@@ -2,6 +2,37 @@
 
 Tienda full-stack con Next.js, Spring Boot y PostgreSQL. Incluye catálogo, carrito, favoritos, pedidos y panel administrativo.
 
+## Aplicación desplegada
+
+- Tienda: [https://nexo-store-roan.vercel.app](https://nexo-store-roan.vercel.app)
+- API: [https://nexo-store-production.up.railway.app/api](https://nexo-store-production.up.railway.app/api)
+- Panel administrativo: [https://nexo-store-roan.vercel.app/admin/login](https://nexo-store-roan.vercel.app/admin/login)
+
+El frontend Next.js está desplegado en Vercel. El backend Spring Boot y la base de datos PostgreSQL están desplegados en Railway. Las credenciales administrativas se configuran como variables privadas en Railway y no deben almacenarse en el repositorio.
+
+### Variables de producción
+
+Vercel requiere esta variable de tipo `Config`:
+
+```env
+NEXT_PUBLIC_API_URL=https://nexo-store-production.up.railway.app/api
+```
+
+El servicio del backend en Railway requiere:
+
+```env
+SPRING_PROFILES_ACTIVE=prod
+SPRING_DATASOURCE_URL=jdbc:postgresql://${{Postgres.PGHOST}}:${{Postgres.PGPORT}}/${{Postgres.PGDATABASE}}
+SPRING_DATASOURCE_USERNAME=${{Postgres.PGUSER}}
+SPRING_DATASOURCE_PASSWORD=${{Postgres.PGPASSWORD}}
+APP_JWT_SECRET=<secreto-aleatorio-de-al-menos-64-caracteres>
+APP_ADMIN_EMAIL=<correo-del-administrador>
+APP_ADMIN_PASSWORD=<contraseña-segura>
+APP_CORS_ALLOWED_ORIGINS=https://nexo-store-roan.vercel.app
+```
+
+El servicio PostgreSQL debe permanecer en la red privada de Railway. Después de modificar una variable `NEXT_PUBLIC_*`, es necesario volver a desplegar el frontend porque su valor se incorpora durante la compilación.
+
 ## Desarrollo local
 
 Requisitos: Node.js 22 y Java 17.
